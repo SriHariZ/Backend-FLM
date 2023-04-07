@@ -11,7 +11,7 @@ env:
 jobs:
   build-and-deploy:
     name: Build and Deploy
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     environment: dev
     steps:
     - uses: actions/checkout@master
@@ -21,23 +21,22 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
 
   zip-folder-job:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Compress folder
-      uses: actions/Backend@v1
-      with:
-       args: zip -qq -r dir.zip Backend
+      run: zip -r folder.zip Backend
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: dir.zip
-        path: dir.zip
+        name: folder-zip
+        path: folder.zip
 
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{ env.FLM-NP-EUS2-AS }}
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_APPSERVICEB_PUBLISH_PROFILE }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
