@@ -26,7 +26,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Compress folder
-      uses: actions/action-zip@v1
+      uses: actions/Backend@v1
       with:
        args: zip -qq -r dir.zip Backend
     - name: Upload artifact
