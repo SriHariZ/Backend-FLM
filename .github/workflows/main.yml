@@ -26,7 +26,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Compress folder
-      run: zip -r folder.zip Backend-master/
+      run: zip -r folder.zip .
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
