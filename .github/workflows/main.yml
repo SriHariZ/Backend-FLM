@@ -12,7 +12,7 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-    environment: dev
+    environment: Dev
     steps:
     - uses: actions/checkout@master
     - name: Use Node.js ${{ env.NODE_VERSION }}
